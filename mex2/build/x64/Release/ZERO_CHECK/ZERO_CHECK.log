@@ -1,0 +1,75 @@
+﻿Der Buildvorgang wurde am 16.10.2018 11:41:54 gestartet.
+     1>Projekt "M:\Lehre\NuUR\FuE\2019\mex2\build\ZERO_CHECK.vcxproj" auf Knoten "2", build Ziel(e).
+     1>InitializeBuildStatus:
+         "x64\Release\ZERO_CHECK\ZERO_CHECK.unsuccessfulbuild" wird erstellt, da "AlwaysCreate" angegeben wurde.
+       CustomBuild:
+         Checking Build System
+         CMake is re-running because M:/Lehre/NuUR/FuE/2019/mex2/build/CMakeFiles/generate.stamp is out-of-date.
+           the file 'M:/Lehre/NuUR/FuE/2019/mex2/CMakeLists.txt'
+           is newer than 'M:/Lehre/NuUR/FuE/2019/mex2/build/CMakeFiles/generate.stamp.depend'
+           result='-1'
+         'Matlabfound'
+         CMake Warning (dev) at CMakeLists.txt:13 (find_package):
+           Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+           Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
+           command to set the policy and suppress this warning.
+         
+           Environment variable PCL_ROOT is set to:
+         
+             D:\Program Files\PCL 1.6.0
+         
+           For compatibility, CMake is ignoring the variable.
+         This warning is for project developers.  Use -Wno-dev to suppress it.
+         
+         -- Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
+         -- Boost version: 1.49.0
+         -- Found the following Boost libraries:
+         --   system
+         --   filesystem
+         --   thread
+         --   date_time
+         --   iostreams
+         --   regex
+         -- Found Flann: D:/Program Files/PCL 1.6.0/3rdParty/FLANN/lib/flann_cpp_s.lib  
+         -- Found qhull: D:/Program Files/PCL 1.6.0/3rdParty/Qhull/lib/qhullstatic.lib  
+         -- looking for PCL_COMMON
+         -- looking for PCL_OCTREE
+         -- looking for PCL_IO
+         -- looking for PCL_KDTREE
+         -- Found PCL_KDTREE: D:/Program Files/PCL 1.6.0/lib/pcl_kdtree_release.lib  
+         -- looking for PCL_SEARCH
+         -- Found PCL_SEARCH: D:/Program Files/PCL 1.6.0/lib/pcl_search_release.lib  
+         -- looking for PCL_SAMPLE_CONSENSUS
+         -- Found PCL_SAMPLE_CONSENSUS: D:/Program Files/PCL 1.6.0/lib/pcl_sample_consensus_release.lib  
+         -- looking for PCL_FILTERS
+         -- Found PCL_FILTERS: D:/Program Files/PCL 1.6.0/lib/pcl_filters_release.lib  
+         -- looking for PCL_GEOMETRY
+         -- Found PCL_GEOMETRY: D:/Program Files/PCL 1.6.0/include/pcl-1.6  
+         -- looking for PCL_SEGMENTATION
+         -- Found PCL_SEGMENTATION: D:/Program Files/PCL 1.6.0/lib/pcl_segmentation_release.lib  
+         -- looking for PCL_VISUALIZATION
+         -- Found PCL_VISUALIZATION: D:/Program Files/PCL 1.6.0/lib/pcl_visualization_release.lib  
+         -- looking for PCL_FEATURES
+         -- Found PCL_FEATURES: D:/Program Files/PCL 1.6.0/lib/pcl_features_release.lib  
+         -- looking for PCL_SURFACE
+         -- Found PCL_SURFACE: D:/Program Files/PCL 1.6.0/lib/pcl_surface_release.lib  
+         -- looking for PCL_REGISTRATION
+         -- Found PCL_REGISTRATION: D:/Program Files/PCL 1.6.0/lib/pcl_registration_release.lib  
+         -- looking for PCL_KEYPOINTS
+         -- Found PCL_KEYPOINTS: D:/Program Files/PCL 1.6.0/lib/pcl_keypoints_release.lib  
+         -- looking for PCL_TRACKING
+         -- Found PCL_TRACKING: D:/Program Files/PCL 1.6.0/lib/pcl_tracking_release.lib  
+         -- looking for PCL_APPS
+         -- Found PCL_APPS: D:/Program Files/PCL 1.6.0/lib/pcl_apps_release.lib  
+         -- Found PCL: optimized;D:/Program Files/PCL 1.6.0/3rdParty/Boost/lib/libboost_system-vc100-mt-1_49.lib;debug;D:/Program Files/PCL 1.6.0/3rdParty/Boost/lib/libboost_system-vc100-mt-gd-1_49.lib;optimized;D:/Program Files/PCL 1.6.0/3rdParty/Boost/lib/libboost_filesystem-vc100-mt-1_49.lib;debug;D:/Program Files/PCL 1.6.0/3rdParty/Boost/lib/libboost_filesystem-vc100-mt-gd-1_49.lib;optimized;D:/Program Files/PCL 1.6.0/3rdParty/Boost/lib/libboost_thread-vc100-mt-1_49.lib;debug;D:/Program Files/PCL 1.6.0/3rdParty/Boost/lib/libboost_thread-vc100-mt-gd-1_49.lib;optimized;D:/Program Files/PCL 1.6.0/3rdParty/Boost/lib/libboost_date_time-vc100-mt-1_49.lib;debug;D:/Program Files/PCL 1.6.0/3rdParty/Boost/lib/libboost_date_time-vc100-mt-gd-1_49.lib;optimized;D:/Program Files/PCL 1.6.0/3rdParty/Boost/lib/libboost_iostreams-vc100-mt-1_49.lib;debug;D:/Program Files/PCL 1.6.0/3rdParty/Boost/lib/libboost_iostreams-vc100-mt-gd-1_49.lib;optimized;D:/Program Files/PCL 1.6.0/3rdParty/Boost/lib/libboost_regex-vc100-mt-1_49.lib;debug;D:/Program Files/PCL 1.6.0/3rdParty/Boost/lib/libboost_regex-vc100-mt-gd-1_49.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_common_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_common_debug.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_octree_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_octree_debug.lib;D:/Program Files/OpenNI/Lib64/openNI64.lib;vtkCommon;vtkRendering;vtkHybrid;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_io_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_io_debug.lib;optimized;D:/Program Files/PCL 1.6.0/3rdParty/FLANN/lib/flann_cpp_s.lib;debug;D:/Program Files/PCL 1.6.0/3rdParty/FLANN/lib/flann_cpp_s-gd.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_kdtree_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_kdtree_debug.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_search_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_search_debug.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_sample_consensus_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_sample_consensus_debug.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_filters_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_filters_debug.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_segmentation_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_segmentation_debug.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_visualization_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_visualization_debug.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_features_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_features_debug.lib;optimized;D:/Program Files/PCL 1.6.0/3rdParty/Qhull/lib/qhullstatic.lib;debug;D:/Program Files/PCL 1.6.0/3rdParty/Qhull/lib/qhullstatic_d.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_surface_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_surface_debug.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_registration_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_registration_debug.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_keypoints_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_keypoints_debug.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_tracking_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_tracking_debug.lib;optimized;D:/Program Files/PCL 1.6.0/lib/pcl_apps_release.lib;debug;D:/Program Files/PCL 1.6.0/lib/pcl_apps_debug.lib (Required is at least version "1.6.0") 
+         -- Configuring done
+         -- Generating done
+         -- Build files have been written to: M:/Lehre/NuUR/FuE/2019/mex2/build
+       FinalizeBuildStatus:
+         Die Datei "x64\Release\ZERO_CHECK\ZERO_CHECK.unsuccessfulbuild" wird gelöscht.
+         Aktualisieren des Timestamps von "x64\Release\ZERO_CHECK\ZERO_CHECK.lastbuildstate".
+     1>Die Erstellung des Projekts "M:\Lehre\NuUR\FuE\2019\mex2\build\ZERO_CHECK.vcxproj" ist abgeschlossen, build Ziel(e).
+
+Das Erstellen war erfolgreich.
+
+Verstrichene Zeit 00:00:03.01
