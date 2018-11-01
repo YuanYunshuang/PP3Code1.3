@@ -1,4 +1,8 @@
-#include <pcl/visualization/cloud_viewer.h>
+#ifndef __UTILS_H__
+#define __UTILS_H__
+
+
+//#include <pcl/visualization/cloud_viewer.h>
 #include <iostream>
 #include <pcl/io/io.h>
 #include <pcl/io/ply_io.h>
@@ -39,14 +43,57 @@ vector<string> getFiles(string cate_dir)
 
 
 
-XYZ_p filterPointCloud(XYZ_p cloud){
+void filterPointCloud(XYZ_p &cloud){
 	XYZ_p cloud_filtered(new XYZ);
 	pcl::VoxelGrid<pcl::PointXYZ> sor;
 	sor.setInputCloud(cloud);
-	sor.setLeafSize(0.1f, 0.1f, 0.1f);
+	sor.setLeafSize(0.2f, 0.2f, 0.2f);
 	sor.filter(*cloud_filtered);
-	
-	return cloud_filtered;
+
+	cloud = cloud_filtered;
+	cout << "After filtering: "<<cloud->points.size() << endl;
+}
+
+void calCenter(const XYZ_p &cloud, pcl::PointXYZ &center){
+		
+	for (int i = 0; i < cloud->points.size(); i++) {
+		center.x += cloud->points[i].x;
+		center.y += cloud->points[i].y;
+		center.z += cloud->points[i].z;
+//		if (cloud->points[i].z < min_z) {
+//			min_z = cloud->points[i].z;
+//		}
+	}
+	center.x /= cloud->points.size();
+	center.y /= cloud->points.size();
+	center.z/=cloud->points.size();
+}
+
+double calFloorHeight(const XYZ_p &cloud, pcl::PointXYZ center, double thickness){
+	double height = center.z;
+	std::vector<std::pair<double, int>> count;	
+	for(double h=-2.0; h<2.0; h+=0.1){
+		int ct = 0;
+		for (int i = 0; i < cloud->points.size(); i++) {
+			if(cloud->points[i].z > (height-h-thickness) && cloud->points[i].z < (height-h+thickness))
+				ct++;
+		}
+		std::pair<double, int> p(height-h,ct);
+		count.push_back(p);
+	}
+
+	std::vector<std::pair<double, int>>::iterator max_it = std::max_element(count.begin(),count.end(),
+					[] (std::pair<double, int> const& c1, std::pair<double, int> const& c2)
+					{return c1.second<c2.second;});
+	std::pair<double, int> result = count[std::distance(std::begin(count),max_it)]; 
+	std::cout<<"Floor height, num_inliers: "<<result.first<<","<<result.second<<std::endl;
+
+	return height;
 }
 
 }//end namespace pp1.3
+
+
+
+
+#endif

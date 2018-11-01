@@ -1,73 +1,55 @@
-#include "./utils.h"
+
+#include "./featureDetector.h"
+#include "./getMaps.h"
+#include <stdlib.h>
 
 //using namespace std;
 using namespace pp3;
 
 
-
-
-cv::Mat densityMap(XYZ_p cloud, double resolution, cv::Mat img) {
-
-	double min_z = numeric_limits<double>::max();
-	pcl::PointXYZ center(0,0,0);
-	for (int i = 0; i < cloud->points.size(); i++) {
-		center.x += cloud->points[i].x;
-		center.y += cloud->points[i].y;
-		center.z += cloud->points[i].z;
-//		if (cloud->points[i].z < min_z) {
-//			min_z = cloud->points[i].z;
-//		}
-	}
-	center.x /= cloud->points.size();
-	center.y /= cloud->points.size();
-	center.z/=cloud->points.size();
-	cout << min_z << endl;
-	cout << cloud->points.size() << endl;
-	for (int i = 0; i < cloud->points.size(); i++) {
-		pcl::PointXYZ p = cloud->points[i];
-		cv::Point2d ip((p.x - center.x) / resolution + img.cols / 2,
-				img.rows / 2 - (p.y - center.y) / resolution);
-		if (p.z > center.z&&p.z<center.z+1 && ip.x < img.cols && ip.y < img.rows && ip.x > 0
-				&& ip.y > 0) {
-			img.at<char>(ip.x, ip.y) += 50;
-			if(img.at<char>(ip.x, ip.y)>255)
-				img.at<char>(ip.x, ip.y) = 255;
-		}
-	}
-
-	//cv::namedWindow( "Display window",cv:: WINDOW_AUTOSIZE );
-	cv::imshow("image",img);
-
-	return img;
-}
-
 int main(int argc, char ** argv) {
-	if (argc <3) {
-		std::cout << "Need one path to pointcloud, and one path for saving images" << std::endl;
+	if (argc <4) {
+		std::cout << "Need one path to pointcloud, one path for saving images and image size." << std::endl;
 	}
 	string pt_path = argv[1];
 	string im_path = argv[2];
+	int im_size = atoi(argv[3]);
 	//get the file paths of the point clouds
 	vector<string> files = getFiles(pt_path);
 
 	//implemeting for each file: translate point cloud into 2D image
-	XYZ_p cloud(new XYZ);
+	PointCloud pt;
+	pt.cloud =boost::make_shared <XYZ> ();
 	pcl::PLYReader Reader;
 	string path;
 	for(int i=0; i<files.size(); i++){
 		cout<<pt_path +"/"+ files[i]<<endl;
-		Reader.read(pt_path +"/"+ files[i], *cloud);
-		cout << cloud->points.size() << endl;
-		//XYZ_p cloud_filtered = filterPointCloud(cloud);
-		double resolution = 0.1; //one pixel =0.1m
-		cv::Mat img(1000, 1000, CV_8UC1, cv::Scalar(0));
-		img = densityMap(cloud, resolution, img);
-		cv::waitKey(0);
+		Reader.read(pt_path +"/"+ files[i], *pt.cloud);
+		cout << pt.cloud->points.size() << endl;
+		if(pt.cloud->points.size() > 500000)
+			filterPointCloud(pt.cloud);
+		calCenter(pt.cloud, pt.center);
+		pt.floor_height = calFloorHeight(pt.cloud, pt.center, 0.3);
+		densityMap(pt,im_size);
+		depthMap(pt,im_size);
+		planarMap(pt, 0.5, 0.03,im_size);
+		
 		path = files[i];
 		path = path.substr(0, path.length() - 4);
-		path = im_path + "/images/" + path + ".jpg";
-		cout<<"Saving image:"<<path<<endl;
-		cv::imwrite(path,img);
+		string path_density_map = im_path + "/images/density/" + path + ".jpg";
+		string path_depth_map = im_path + "/images/depth/" + path + ".jpg";
+		string path_planar_map = im_path + "/images/curvature/" + path + ".jpg";
+		cout<<"Saving images:"<<endl;
+		cout<<path_density_map<<endl;
+		cv::imwrite(path_density_map,pt.density_map);
+		cout<<path_depth_map<<endl;
+		cv::imwrite(path_depth_map,pt.depth_map);
+		cout<<path_planar_map<<endl;
+		cv::imwrite(path_planar_map,pt.planar_map);
+		
+		//cv::Mat dst_norm;
+		//harrisCorners(pt, 150, dst_norm);
+		
 	}
 
 	return 1;
