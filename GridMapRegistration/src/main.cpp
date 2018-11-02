@@ -32,7 +32,7 @@ int main(int argc, char ** argv) {
 		pt.floor_height = calFloorHeight(pt.cloud, pt.center, 0.3);
 		densityMap(pt,im_size);
 		depthMap(pt,im_size);
-		planarMap(pt, 0.5, 0.03,im_size);
+		planarMap(pt, 30, 0.03,im_size);
 		
 		path = files[i];
 		path = path.substr(0, path.length() - 4);

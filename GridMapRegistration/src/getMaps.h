@@ -70,7 +70,7 @@ void depthMap(PointCloud &pt, int im_size) {
 	cv::destroyAllWindows();*/
 }
 
-void planarMap(PointCloud &pt, double radius, float curvature_thr, int im_size){
+void planarMap(PointCloud &pt, int num_nbs, float curvature_thr, int im_size){
 	XYZ_p cloud(new XYZ);
 	cloud = pt.cloud;
 	// Create the normal estimation class, and pass the input dataset to it
@@ -83,7 +83,7 @@ void planarMap(PointCloud &pt, double radius, float curvature_thr, int im_size){
 	// Output datasets
 	pcl::PointCloud<pcl::Normal>::Ptr cloud_normals (new pcl::PointCloud<pcl::Normal>);
 	// Use all neighbors in a sphere of radius 50cm
-	ne.setRadiusSearch (radius);
+	ne.setKSearch (num_nbs);
 	// Compute the features
 	ne.compute (*cloud_normals);
 	//debug: print normals
@@ -96,7 +96,8 @@ void planarMap(PointCloud &pt, double radius, float curvature_thr, int im_size){
 		p.z = p.z - pt.floor_height;
 		cv::Point2d ip((p.x - pt.center.x) / resolution + img.cols / 2,
 				img.rows / 2 - (p.y - pt.center.y) / resolution);
-		if (p.z>0 && p.z<5 && ip.x < img.cols && ip.y < img.rows && ip.x > 0 && ip.y > 0) {
+		if (p.z>0 && p.z<2 && ip.x < img.cols && ip.y < img.rows && ip.x > 0 && ip.y > 0) {
+			cout<<cloud_normals->points[i]<<endl;
 			float curv = fabs(cloud_normals->points[i].curvature);
 			//cout<<curv<<endl;
 			if(curv<curvature_thr)
@@ -106,9 +107,9 @@ void planarMap(PointCloud &pt, double radius, float curvature_thr, int im_size){
 	
 	}
 	cv::normalize(img, pt.planar_map, 0, 255, cv::NORM_MINMAX, CV_32FC1, cv::Mat());
-	/*cv::imshow("cuvature map",pt.planar_map);
+	cv::imshow("cuvature map",pt.planar_map);
 	cv::waitKey(0);
-	cv::destroyAllWindows();*/
+	cv::destroyAllWindows();
 }
 
 }//end namespace pp3
