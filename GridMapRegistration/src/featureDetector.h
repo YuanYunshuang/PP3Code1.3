@@ -18,7 +18,9 @@ typedef std::pair<cv::Point2d, std::vector<double> > Discriptor;
 		cv::Mat density_map;	
 		cv::Mat depth_map;
 		cv::Mat planar_map;	//use pca to check if it a blob or linear region
-		cv::Mat map_combined;
+		cv::Mat diff_normals_map;
+		cv::Mat don_pca;
+		cv::Mat don_nms;
 		std::vector<cv::Point2d> PoIs;
 		std::vector<Discriptor> discriptors;
 		std::pair<int,int> t;

@@ -69,6 +69,7 @@ void calCenter(const XYZ_p &cloud, pcl::PointXYZ &center){
 	center.z/=cloud->points.size();
 }
 
+
 double calFloorHeight(const XYZ_p &cloud, pcl::PointXYZ center, double thickness){
 	double height = center.z;
 	std::vector<std::pair<double, int>> count;	
