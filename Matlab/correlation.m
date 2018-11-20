@@ -4,7 +4,7 @@ close all
 
 img_ref = imread('../images/map0.jpg');
 img_ref = imresize(img_ref,0.4);
-img_reg = imread('../images/0/cloud0_0.jpg');
+img_reg = imread('../images/0/cloud0_-10.jpg');
 img_reg = imresize(img_reg, 0.4);
 [height_ref, width_ref] = size(img_ref);
 [height, width] = size(img_reg);
